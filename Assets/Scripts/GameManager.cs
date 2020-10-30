@@ -1,18 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static GameManager _instance;
+
+    private void Awake()
     {
-        
+        if (_instance == null) {
+            _instance = this;
+        }
+        DontDestroyOnLoad(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    public static GameManager Instance()
     {
-        
+        return _instance;
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Main", LoadSceneMode.Single);
+
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("RestartScene", LoadSceneMode.Single);
+        Cursor.lockState = CursorLockMode.None;
     }
 }

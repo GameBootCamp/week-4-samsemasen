@@ -27,6 +27,7 @@ namespace CheckPointSystem
                 checkPoints[id + 1].isMyTurn = true;
             } else {
                 Debug.Log("yarış bitti");
+                GameManager.Instance().RestartGame();
             }
         }
 
